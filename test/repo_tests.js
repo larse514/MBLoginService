@@ -1,3 +1,7 @@
 var repo = require('../repository/repo');
 
-repo.getUser();
+repo.storeCredentials({
+	user : "test",
+	pass : "gophers"
+	
+});

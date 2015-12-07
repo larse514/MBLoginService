@@ -1,5 +1,10 @@
-var fs = require('fs');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//var fs = require('fs');
+//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
+
+var url = 'mongodb://localhost:27017/test';
+
 /*
  * Repository class for Users, currently pulls from file
  */
@@ -10,22 +15,24 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 function storeCredentials(user){
 	console.log(user);
 	//convert the user to json
-	var jsonString = user.toJSON();
+	var jsonUser = user//.toJSON();
+	
+	getMongoConnection(insertUser, jsonUser);
+	
+	/*MongoClient.connect(url, function(err, db) {
+	  assert.equal(null, err);
+	  insertUser(db, jsonUser, function() {
+		  db.close();
+	  });
+	});
+	*/
 	//now right the User to the file
-	fs.writeFile("/tmp/test.json", JSON.stringify(jsonString), function(err) {
-		if(err) {
-		    console.log(err);
-			return err;
-		}
-
-		console.log("The file was saved!");
-	}); 
+	
 }
 /*
  * Method to retriever user from repo
  */
 function getUser(){
-	try
 		//Get repo connection
 		var connection = getConnection();
 		//grab user and return
@@ -33,33 +40,25 @@ function getUser(){
 		
 		console.log(user);
 		return user;
-	}
-	catch(err){
-		console.log("also");
-
-		console.log(err);
-	}
 }
 
 
-function getConnection()
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", "file:///tmp/test.json", false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-				//throw "failed to get connection"
+var insertUser = function(db, user, callback) {
+	db.collection('user').insertOne( user, function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the restaurants collection.");
+    callback(result);
+  });
+};
 
-            }
-        }
-    }
-    rawFile.send(null);
-	return rawFile;
 
+function getMongoConnection(callback, json){
+	MongoClient.connect(url, function(err, db) {
+	  assert.equal(null, err);
+	  callback(db, json, function() {
+		  db.close();
+	  });
+	});
 }
 
 module.exports = {
