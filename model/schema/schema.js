@@ -1,5 +1,5 @@
 //schema.js
-scehmas = {
+schemas = {
 	user: {
 		id: null,
 		name: null,
