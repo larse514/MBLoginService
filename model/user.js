@@ -4,9 +4,13 @@ var User = function(data){
 }
 
 User.prototype.data = {}
-//Define generic setter
-User.prototype.setName = function (name) {
-	this.data.name = name;
+//Define generic setter and getter
+User.prototype.set = function (name, value) {
+	this.data[name] = value;
+}
+
+User.prototype.get = function (name){
+	return this.data[name];
 }
 
 User.findById = function (id, callback){
