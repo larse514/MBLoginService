@@ -1,17 +1,18 @@
 //JSON response objects
+var constants = require('./constants.js')
 var badRequest = function(res) {
-	res.status(400);
+	res.status(constants.BAD_REQUEST.code);
 	res.json({
-		"status":400,
-		"message":"Bad Request"
+		"status":constants.BAD_REQUEST.code,
+		"message":constants.BAD_REQUEST.message
 	});
 }
 
 var unauthorized = function (res){
-	res.status(401);
+	res.status(constants.UNAUTHORIZED.code);
 	res.json({
-		"status":401,
-		"message":"Invalid Credentials"
+		"status":constants.UNAUTHORIZED.code,
+		"message":constants.UNAUTHORIZED.message
 	});
 }
 
