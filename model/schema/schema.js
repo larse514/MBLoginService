@@ -1,7 +1,7 @@
 //schema.js
 schemas = {
 	user: {
-		id: null,
+		_id: null,
 		userName: null,
 		password: null
 	}

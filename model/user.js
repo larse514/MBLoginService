@@ -20,35 +20,42 @@ User.prototype.get = function (name){
 }
 
 //db methods
-User.prototype.findById = function (id, callback){
+User.prototype.findById = function (id, next){
 	mUser.findById(id, function(err, user) {
 		if (err) throw err;
 		// show the one user
-		callback(err, user)
+		next(err, user)
 	});
 }
-User.prototype.findAll = function(callback){
+User.prototype.findAll = function(next){
 	// get all the users
 	mUser.find({}, function(err, users) {
 		if (err) throw err;
 		// object of all the users
-		callback(users)
+		next(users)
 	});
 }
-User.prototype.findByUserName = function(name, callback){
+User.prototype.findByUserName = function(name, next){
 	// get all the users
 	mUser.find({userName : name}, function(err, user) {
 		if (err) throw err;
 		// object of all the users
-		callback(user)
+		next(user)
 	});
 }
-User.prototype.save = function (callback){
+User.prototype.save = function (next){
 	var newUser = new mUser(this.data);
 	newUser.save(function(err) {
 		if (err) throw err;
-		callback();
-
+		next();
+	});
+}
+User.prototype.update = function(next){
+	console.log('here')
+	mUser.findByIdAndUpdate(this.data._id, this.data,{new: true}, function(err, user){
+		if (err) throw err;
+		// we have the updated user returned to us
+		next(user)
 	});
 }
 //Method for testing to close connection

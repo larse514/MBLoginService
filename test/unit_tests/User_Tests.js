@@ -5,7 +5,7 @@
 var User = require('../../model/user.js');
 var test = require('unit.js');
 var aggregation = 0;
-var totalTests = 7;
+var totalTests = 8;
 var rand =  Math.floor((Math.random() * 100000) + 1);
 
 //constructor test
@@ -56,7 +56,22 @@ new User().findAll(function(err, users){
 	}else {
 		console.log("failed test findAll")
 	}
+});
+//Update
+//Hard coded for now...
+var user = {
+	"_id" : "567c361af4218a982c7c12b1",
+    "userName" : "integration_test_38179" + 'UPDATE' + rand,
+    "password" : "anustart"
+	}
+new User(user).update(function(user){
+	///if it's null fail the test
+	if(user !== null){
+		aggregation++
+	}else {
+		console.log("failed test update")
+	}
 	console.log(aggregation + " passed out of " + totalTests);
 	new User().cleanUp();
-});
+})
 

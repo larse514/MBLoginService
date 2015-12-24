@@ -5,20 +5,17 @@ var aggregation = 0;
 var totalTests = 2;
 
 //verify stuff
-console.log(User)
 test.assert(User !== undefined)
 aggregation++
 //add user
 var chris = new User({
-  userName: 'Chris',
-  password: 'password' 
+	userName: 'Chris',
+	password: 'password' 
 });
 
 chris.save(function(err) {
-  if (err) throw err;
-
-  console.log('User saved successfully!');
-  User.db.close()
+	if (err) throw err;
+	User.db.close()
 });
 aggregation++
 

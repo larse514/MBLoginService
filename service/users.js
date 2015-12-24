@@ -16,11 +16,24 @@ var users = {
 			Helper.badRequest(res)
 			return;
 		}
-		new User().findByUserName(user.get('userName'), function(user){
+		user.findByUserName(user.get('userName'), function(user){
 			res.json(user)
 			next()
 		})
 	},
+	create: function(req, res, next){
+		var user = new User(req.body);
+		//something something not the right way
+		if(!user){
+			Helper.badRequest(res)
+			return;
+		}
+		//if the user is valid then save it
+		user.save(next);
+	},
+	update: function(req, res, next){
+		var user = new User(req)
+	}
 }
 
  module.exports = users;
