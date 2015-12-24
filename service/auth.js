@@ -1,6 +1,7 @@
 //auth.js
 var jwt = require('jwt-simple');
 var User = require('../model/user.js');
+var Helper = require('../util/responseObjectHelper.js')
 //expose auth methods
 var auth = {
 	//this method grabs request response objects and
@@ -12,11 +13,14 @@ var auth = {
 		var password = req.body.password || '';
 		
 		if(userName == '' || password == ''){
-			res.status(401);
+			//commented out in case my grand schemes are dumb
+			/*res.status(401);
 			res.json({
 				"status":401,
 				"message":"Invalid Credentials"
 			});
+			*/
+			Helper.unauthorized(res)
 			return;
 		}
 		//Do a weird thing where we statically call findByUserName
@@ -24,11 +28,7 @@ var auth = {
 			//try and create a user with the response
 			var user = new User(user);
 			if(!user){
-				res.status(401);
-				res.json({
-					"status":401,
-					"message":"Invalid Credentials"
-				});
+				Helper.unauthorized(res)
 				return;
 			}
 			

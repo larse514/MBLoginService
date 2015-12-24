@@ -1,5 +1,6 @@
 //users.js
 var User = require('../model/user.js');
+var Helper = require('../util/responseObjectHelper.js')
 
 var users = {
 	getAll: function(req, res, next){
@@ -10,15 +11,12 @@ var users = {
 	},
 	getByName: function(req, res, next){
 		var user = new User(req.body);
+		//this isn't the right way to check
 		if(!user){
-			res.status(400);
-			res.json({
-				"status":400,
-				"message":"Bad Request"
-			});
+			Helper.badRequest(res)
 			return;
 		}
-		new User().findByUserName(userName, function(user){
+		new User().findByUserName(user.get('userName'), function(user){
 			res.json(user)
 			next()
 		})
