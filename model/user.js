@@ -32,7 +32,7 @@ User.prototype.findAll = function(callback){
 	mUser.find({}, function(err, users) {
 		if (err) throw err;
 		// object of all the users
-		callback(err, users)
+		callback(users)
 	});
 }
 User.prototype.findByUserName = function(name, callback){

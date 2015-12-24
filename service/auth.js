@@ -1,6 +1,6 @@
 //auth.js
 var jwt = require('jwt-simple');
-var User = require('../mode/user.js');
+var User = require('../model/user.js');
 //expose auth methods
 var auth = {
 	//this method grabs request response objects and
