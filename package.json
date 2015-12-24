@@ -1,0 +1,41 @@
+{
+  "name": "mbloginservice",
+  "version": "1.0.0",
+  "description": "service layer for Motherbox",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "basic-auth": "^1.0.3",
+    "body-parser": "^1.14.2",
+    "bson": "^0.4.20",
+    "express": "^4.13.3",
+    "jwt-simple": "^0.4.0",
+    "lodash": "^3.10.1",
+    "mongodb": "^2.0.52",
+    "mongoose": "^4.3.4",
+    "monk": "^1.0.1",
+    "morgan": "^1.6.1",
+    "nodejs-model": "^0.1.6",
+    "unit.js": "^2.0.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larse514/MBLoginService.git"
+  },
+  "keywords": [
+    "login"
+  ],
+  "author": "Andrew Larsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/larse514/MBLoginService/issues"
+  },
+  "homepage": "https://github.com/larse514/MBLoginService#readme"
+}
