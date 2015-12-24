@@ -3,7 +3,9 @@ var jwt = require('jwt-simple');
 var User = require('../mode/user.js');
 //expose auth methods
 var auth = {
-	
+	//this method grabs request response objects and
+	//sets return values as necessary, but doee not
+	//actually return anything
 	login: function(req, res){
 		//first get username and password
 		var userName = req.body.username || '';

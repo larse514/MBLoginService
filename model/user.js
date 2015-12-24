@@ -40,7 +40,7 @@ User.prototype.findByUserName = function(name, callback){
 	mUser.find({userName : name}, function(err, user) {
 		if (err) throw err;
 		// object of all the users
-		callback(err, user)
+		callback(user)
 	});
 }
 User.prototype.save = function (callback){
