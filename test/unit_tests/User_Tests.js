@@ -2,8 +2,9 @@
 var User = require('../../model/user.js');
 var test = require('unit.js');
 var aggregation = 0;
-var totalTests = 4;
+var totalTests = 5;
 //constructor test
+
 var user = new User({name:'test'});
 test.assert(user.data.name === 'test');
 aggregation++;
@@ -27,5 +28,13 @@ var shouldBeNull = new User().sanitize(badData);
 test.assert(shouldBeNull.badObject !== 'test');
 aggregation++
 
+//db save test
+//first create a new user
+var user = new User({name:"unit_test_user", password:"apassword"})
+test.assert(user.data.name === "unit_test_user")
+test.assert(user.data.password === "apassword")
+//okay our object is good, now let's try and save it
+user.save(function(){user.cleanUp();})
+aggregation++
 
 console.log(aggregation + " passed out of " + totalTests);
