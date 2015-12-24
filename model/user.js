@@ -51,7 +51,6 @@ User.prototype.save = function (next){
 	});
 }
 User.prototype.update = function(next){
-	console.log('here')
 	mUser.findByIdAndUpdate(this.data._id, this.data,{new: true}, function(err, user){
 		if (err) throw err;
 		// we have the updated user returned to us
@@ -77,6 +76,9 @@ User.prototype.sanitize = function (data){
 	//_.defaults will add any variables, from schema, that data doesn't contain
 	//_.keys gets all the keys from schema and _.pick only keeps these values
 	return _.pick(_.defaults(data, schema), _.keys(schema));
+}
+User.prototype.isValid = function(){
+	return _.filter(this.data, function(n){return !_.isNull(n)}).length > 0 ? true : false
 }
 
 

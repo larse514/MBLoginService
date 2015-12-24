@@ -11,8 +11,8 @@ var users = {
 	},
 	getByName: function(req, res, next){
 		var user = new User(req.body);
-		//this isn't the right way to check
-		if(!user){
+		//since this is a get by name need to make sure userName is set correctly
+		if(user.get('userName') == null){
 			Helper.badRequest(res)
 			return;
 		}
@@ -23,8 +23,8 @@ var users = {
 	},
 	create: function(req, res, next){
 		var user = new User(req.body);
-		//something something not the right way
-		if(!user){
+		//need to make sure 
+		if(!user.isValid()){
 			Helper.badRequest(res)
 			return;
 		}
@@ -32,7 +32,15 @@ var users = {
 		user.save(next);
 	},
 	update: function(req, res, next){
-		var user = new User(req)
+		var user = new User(req.body);
+		if(!user.isValid()){
+			Helper.badRequest(res)
+			return;
+		}
+		user.update(function(updateUser){
+			res.json(user)
+			next(updateUser)
+		});
 	}
 }
 

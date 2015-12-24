@@ -3,7 +3,7 @@ var test = require('unit.js');
 var UserService = require('../../service/users.js');
 var User = require('../../model/user.js');
 var aggregation = 0;
-var totalTests = 3;
+var totalTests = 4;
 //set dummy req/res objects TODO FIND AN ACTUAL MOCKING FRAMEWORK
 var req = {};
 //mock up the res object's json method
@@ -48,9 +48,30 @@ UserService.create(req, res, function(){
 		//confirm res is set properly, not great
 		test.assert(res.test !== '' && res.test !== null && res.test !== '[]')
 		aggregation++;
-		console.log(aggregation + " passed out of " + totalTests);
-		//can we cleanup from here?
-		new User().cleanUp()
+		//now lets update.  We can just pop it off the array since we don't care
+		console.log(res)
+		var obj = JSON.parse(res.test).pop()
+		obj.userName += "UPDATE_" + rand;
+		req.body = obj;
+		test.assert(obj);
+		UserService.update(req, res, function(user){
+			test.assert(user != null)
+			console.log(user)
+			aggregation++;
+			console.log(aggregation + " passed out of " + totalTests);
+			//can we cleanup from here?
+			new User().cleanUp()
+		})
+
 	})
 
 })
+//next test happy path update
+//reset dummy req/res objects
+var req = {};
+//mock up the res object's json method
+var res = {json : function(data){
+	res.test = JSON.stringify(data)
+}};
+//need to get an object
+
