@@ -10,7 +10,7 @@ test.assert(User !== undefined)
 aggregation++
 //add user
 var chris = new User({
-  name: 'Chris',
+  userName: 'Chris',
   password: 'password' 
 });
 

@@ -2,7 +2,7 @@
 schemas = {
 	user: {
 		id: null,
-		name: null,
+		userName: null,
 		password: null
 	}
 }

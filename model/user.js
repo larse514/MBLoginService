@@ -20,15 +20,33 @@ User.prototype.get = function (name){
 }
 
 //db methods
-User.findById = function (id, callback){
-
+User.prototype.findById = function (id, callback){
+	mUser.findById(id, function(err, user) {
+		if (err) throw err;
+		// show the one user
+		callback(err, user)
+	});
 }
-
+User.prototype.findAll = function(callback){
+	// get all the users
+	mUser.find({}, function(err, users) {
+		if (err) throw err;
+		// object of all the users
+		callback(err, users)
+	});
+}
+User.prototype.findByUserName = function(name, callback){
+	// get all the users
+	mUser.find({userName : name}, function(err, user) {
+		if (err) throw err;
+		// object of all the users
+		callback(err, user)
+	});
+}
 User.prototype.save = function (callback){
 	var newUser = new mUser(this.data);
 	newUser.save(function(err) {
 		if (err) throw err;
-		console.log('User saved successfully!');
 		callback();
 
 	});
@@ -44,11 +62,9 @@ User.prototype.cleanUp = function(){
 User.prototype.sanitize = function (data){
 	//if data is invalid set to empty object so we don't pull 
 	//bad errors, seems smrt
-	console.log(data)
 	data = data || {};
 	//grab user schema
 	schema = schemas.user
-	console.log(schema)
 	//so let's see...
 	//these are using lodash functions (more info found here: https://lodash.com/)
 	//_.defaults will add any variables, from schema, that data doesn't contain
