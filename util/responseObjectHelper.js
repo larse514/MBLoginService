@@ -1,5 +1,7 @@
 //JSON response objects
 var constants = require('./constants.js')
+
+//TODO-refactor to one exposed point
 var badRequest = function(res) {
 	res.status(constants.BAD_REQUEST.code);
 	res.json({
@@ -16,7 +18,33 @@ var unauthorized = function (res){
 	});
 }
 
+var expiredToken = function(res){
+	res.status(constants.TOKEN_EXPIRED.code);
+	res.json({
+		"status":constants.TOKEN_EXPIRED.code,
+		"message":constants.TOKEN_EXPIRED.message
+	});
+}
+
+var invalidUser = function(res){
+	res.status(constants.INVALID_USER.code);
+	res.json({
+		"status":constants.INVALID_USER.code,
+		"message":constants.INVALID_USER.message
+	});
+}
+
+var internalServerError = function(res){
+	res.status(constants.INTERNAL_SERVER_ERROR.code);
+	res.json({
+		"status":constants.INTERNAL_SERVER_ERROR.code,
+		"message":constants.INTERNAL_SERVER_ERROR.message
+	});
+}
+
 module.exports = {
 	badRequest : badRequest,
-	unauthorized : unauthorized
+	unauthorized : unauthorized,
+	expiredToken : expiredToken,
+	invalidUser: invalidUser
 }

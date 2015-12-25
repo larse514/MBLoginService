@@ -2,6 +2,7 @@
 var jwt = require('jwt-simple');
 var User = require('../model/user.js');
 var Helper = require('../util/responseObjectHelper.js')
+var constants = require('../util/constants.js')
 //expose auth methods
 var auth = {
 	//this method grabs request response objects and
@@ -35,6 +36,12 @@ var auth = {
 			res.json(genToken(user));
 		});	
 	
+	},
+	validateUser : function(userName, next) {
+		new User().findByUserName(userName, function(user){
+			if(!user) throw constants.NOT_FOUND
+			next(user)
+		});
 	}
 	
 }

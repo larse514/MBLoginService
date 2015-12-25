@@ -38,40 +38,32 @@ var user = new User({userName:aUser, password:"apassword"})
 test.assert(user.data.userName === aUser)
 test.assert(user.data.password === "apassword")
 //okay our object is good, now let's try and save it
-user.save(function(){});//function(){user.cleanUp();})
+user.save(function(){});
 aggregation++
 //findById
 new User().findById("567b6e975862b4f02f6a7939", function(err, user){
-	if(user !== null){
+	test.assert(user !== null)
+	aggregation++
+	//find all
+	new User().findAll(function(err, users){
+		///if it's null fail the test
+		test.assert(users !== null)
 		aggregation++
-	}else {
-		console.log("failed test findById")
-	}
+		//Update
+		//Hard coded for now...
+		var user = {
+		"_id" : "567c361af4218a982c7c12b1",
+		"userName" : "integration_test_38179" + 'UPDATE' + rand,
+		"password" : "anustart"
+		}
+		new User(user).update(function(user){
+			///if it's null fail the test
+			test.assert(user !== null)
+			aggregation++
+			console.log(aggregation + " passed out of " + totalTests);
+			new User().cleanUp();
+		})
+	});
 });
-//find all
-new User().findAll(function(err, users){
-	///if it's null fail the test
-	if(users !== null){
-		aggregation++
-	}else {
-		console.log("failed test findAll")
-	}
-});
-//Update
-//Hard coded for now...
-var user = {
-	"_id" : "567c361af4218a982c7c12b1",
-    "userName" : "integration_test_38179" + 'UPDATE' + rand,
-    "password" : "anustart"
-	}
-new User(user).update(function(user){
-	///if it's null fail the test
-	if(user !== null){
-		aggregation++
-	}else {
-		console.log("failed test update")
-	}
-	console.log(aggregation + " passed out of " + totalTests);
-	new User().cleanUp();
-})
+
 

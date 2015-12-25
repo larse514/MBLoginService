@@ -19,6 +19,7 @@ User.prototype.get = function (name){
 	return this.data[name];
 }
 
+//probably refactor these into db class
 //db methods
 User.prototype.findById = function (id, next){
 	mUser.findById(id, function(err, user) {
