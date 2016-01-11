@@ -9,7 +9,6 @@ var auth = {
 	//sets return values as necessary, but doee not
 	//actually return anything
 	login: function(req, res){
-		console.log(req.body);
 		//first get username and password
 		var userName = req.body.username || '';
 		var password = req.body.password || '';
@@ -17,16 +16,7 @@ var auth = {
 		console.log(userName)
 		console.log(password)
 		if(userName == '' || password == ''){
-			//commented out in case my grand schemes are dumb
-			/*res.status(401);
-			res.json({
-				"status":401,
-				"message":"Invalid Credentials"
-			});
-			*/
-
-			console.log('helloWorldasdf');
-
+			//username or password was not provided so return unauthorized
 			Helper.unauthorized(res)
 			return;
 		}
