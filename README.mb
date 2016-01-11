@@ -1,1 +1,19 @@
 Inititial readme
+
+installs:
+
+APPLICATION INSTALLS
+npm init
+
+Fill it up as applicable. Now, we will add a few dependencies. Run
+
+npm install --save express body-parser morgan jwt-simple
+
+FOR DEBUGGING
+Install it with:
+npm install -g node-inspector
+Then run:
+node-debug app.js
+
+TORTOISE GIT
+https://tortoisegit.org/download/

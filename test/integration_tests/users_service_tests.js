@@ -23,7 +23,7 @@ var res = {json : function(data){
 	res.test = JSON.stringify(data)
 }};
 //set body
-req.body = {userName : "unit_test_user72729"}
+req.body = {userName : "unit_test_user46532"}
 UserService.getByName(req, res, function(){
 	//double check this
 	test.assert(res.test !== '' && res.test !== null && res.test !== '[]')
@@ -49,14 +49,12 @@ UserService.create(req, res, function(){
 		test.assert(res.test !== '' && res.test !== null && res.test !== '[]')
 		aggregation++;
 		//now lets update.  We can just pop it off the array since we don't care
-		console.log(res)
 		var obj = JSON.parse(res.test).pop()
 		obj.userName += "UPDATE_" + rand;
 		req.body = obj;
 		test.assert(obj);
 		UserService.update(req, res, function(user){
 			test.assert(user != null)
-			console.log(user)
 			aggregation++;
 			console.log(aggregation + " passed out of " + totalTests);
 			//can we cleanup from here?

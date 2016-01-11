@@ -26,7 +26,7 @@ app.all('/*', function(req, res, next){
 // Any URL's that do not follow the below pattern should be avoided unless you 
 // are sure that authentication is not needed
 
-app.all('/api/v1/*'), [require('./middlewares/validateRequest')]);
+app.all('/api/v1/*', [require('./middleware/validateRequest')]);
 
 app.use('/', require('./routes'));
 
@@ -53,7 +53,7 @@ app.get('/login', function(req, res){
 		res.send('Bad Request')
 	}
 
-}
+});
 
 //start the server
 app.listen(process.env.PORT || 8080);

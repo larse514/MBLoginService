@@ -1,6 +1,6 @@
 //validateRequest.js
 var jwt = require('jwt-simple');
-var validateUser = require('../routes/auth').validateUser;
+var validateUser = require('../service/auth').validateUser;
 var Helper = require('../util/responseObjectHelper.js')
 var constants = require('../util/constants.js')
 
@@ -28,16 +28,16 @@ module.exports = function(req, res, next){
 				return;
 			}
 			//now validate authorization
-			validateUser(key, function(){
+			validateUser(key, function() {
 				//if the user is admin then proceed
 				if ((req.url.indexOf('admin') >= 0 && dbUser.role == 'admin') || (req.url.indexOf('admin') < 0 && req.url.indexOf('/api/v1/') >= 0)) {
 					next(); // To move to next middleware
 				} else {
 					Helper.unauthorized(res);
 					return;
-				});
-					return;
 				}
+				return;
+			});
 		} catch(err){
 			if(err == constants.NOT_FOUND){
 				Helper.invalidUser(res);

@@ -41,7 +41,7 @@ test.assert(user.data.password === "apassword")
 user.save(function(){});
 aggregation++
 //findById
-new User().findById("567b6e975862b4f02f6a7939", function(err, user){
+new User().findById("56931adeb2dc7fa411359ba9", function(err, user){
 	test.assert(user !== null)
 	aggregation++
 	//find all
@@ -52,7 +52,7 @@ new User().findById("567b6e975862b4f02f6a7939", function(err, user){
 		//Update
 		//Hard coded for now...
 		var user = {
-		"_id" : "567c361af4218a982c7c12b1",
+		"_id" : "56931adeb2dc7fa411359ba9",
 		"userName" : "integration_test_38179" + 'UPDATE' + rand,
 		"password" : "anustart"
 		}
