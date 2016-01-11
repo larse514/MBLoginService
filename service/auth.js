@@ -9,10 +9,13 @@ var auth = {
 	//sets return values as necessary, but doee not
 	//actually return anything
 	login: function(req, res){
+		console.log(req.body);
 		//first get username and password
 		var userName = req.body.username || '';
 		var password = req.body.password || '';
-		
+		console.log('helloWorld1');
+		console.log(userName)
+		console.log(password)
 		if(userName == '' || password == ''){
 			//commented out in case my grand schemes are dumb
 			/*res.status(401);
@@ -21,12 +24,17 @@ var auth = {
 				"message":"Invalid Credentials"
 			});
 			*/
+
+			console.log('helloWorldasdf');
+
 			Helper.unauthorized(res)
 			return;
 		}
 		//Do a weird thing where we statically call findByUserName
 		new User().findByUserName(userName, function(user){
 			//try and create a user with the response
+			console.log('helloWorldNoWayt');
+
 			var user = new User(user);
 			if(!user){
 				Helper.unauthorized(res)
@@ -39,6 +47,8 @@ var auth = {
 	},
 	validateUser : function(userName, next) {
 		new User().findByUserName(userName, function(user){
+
+			console.log('helloWorld1');
 			if(!user) throw constants.NOT_FOUND
 			next(user)
 		});

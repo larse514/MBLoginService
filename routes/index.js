@@ -9,7 +9,7 @@ var user = require('../service/users.js');
  * Routes that do not require Authorization
  */
 router.post('/login', auth.login);
-router.post('/helloworld', auth.login);
+router.post('/helloworld', function(req, res){console.log('hw')});
 
 /*
  * Routes that can be hit by authenticated users

@@ -36,7 +36,7 @@ app.use(function(req, res, next){
 	err.status = 404;
 	next(err);
 });
-
+/*
 app.get('/helloworld', function (req, res){
 	console.log('helloWorld');
 	res.statusCode = 200;
@@ -54,6 +54,6 @@ app.get('/login', function(req, res){
 	}
 
 });
-
+*/
 //start the server
 app.listen(process.env.PORT || 8080);

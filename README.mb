@@ -17,3 +17,7 @@ node-debug app.js
 
 TORTOISE GIT
 https://tortoisegit.org/download/
+
+TEST URLS
+
+curl -X POST -H "Content-Type: application/json" -d "{ \"username\": \"testname\", \"password\": \"testpass\" }" http://localhost:8080/login
