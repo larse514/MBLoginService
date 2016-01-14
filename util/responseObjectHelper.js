@@ -46,5 +46,6 @@ module.exports = {
 	badRequest : badRequest,
 	unauthorized : unauthorized,
 	expiredToken : expiredToken,
-	invalidUser: invalidUser
+	invalidUser: invalidUser,
+	internalServerError: internalServerError
 }

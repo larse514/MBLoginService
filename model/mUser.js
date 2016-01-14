@@ -1,4 +1,5 @@
 // grab the things we need
+//TODO-Refactor into a repository class since mUser doesn't make sense
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/User_unit_test');
 var Schema = mongoose.Schema;

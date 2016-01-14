@@ -11,15 +11,12 @@ module.exports = function(req, res, next){
 
 	// We skip the token outh for [OPTIONS] requests.
 	//if(req.method == 'OPTIONS') next();
-	
 	//token
-	var token = (req.body && req.body.access_token) || 
+	var token = (req.body && req.body.access_token) ||
 	(req.query && req.query.access_token) || req.headers['x-access-token'];
 	//key
 	var key = (req.body && req.body.x_key) || 
 	(req.query && req.query.x_key) || req.headers['x-key'];
-	console.log(token)
-	console.log(key)
 	if(token || key){
 		try {
 			var decoded = jwt.decode(token, require('../config/secret.js')());
@@ -30,7 +27,6 @@ module.exports = function(req, res, next){
 			}
 			//now validate authorization
 			validateUser(key, function() {
-				console.log('unauthorized')
 				//if the user is admin then proceed
 				if ((req.url.indexOf('admin') >= 0 && dbUser.role == 'admin') || (req.url.indexOf('admin') < 0 && req.url.indexOf('/api/v1/') >= 0)) {
 					next(); // To move to next middleware
@@ -40,6 +36,7 @@ module.exports = function(req, res, next){
 				}
 				return;
 			});
+			//TODO-rework how i'm handling exceptions
 		} catch(err){
 			if(err == constants.NOT_FOUND){
 				Helper.invalidUser(res);
@@ -49,7 +46,6 @@ module.exports = function(req, res, next){
 		}			
 	}
 	else {
-		console.log('otherunauthorized')
 		Helper.unauthorized(res);
 		return;
   }
