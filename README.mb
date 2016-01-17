@@ -3,6 +3,7 @@ Inititial readme
 installs:
 
 APPLICATION INSTALLS
+TODO-create an install script
 npm init
 
 Fill it up as applicable. Now, we will add a few dependencies. Run
@@ -18,10 +19,14 @@ node-debug app.js
 TORTOISE GIT
 https://tortoisegit.org/download/
 
+
 TEST URLS
 Login Server
 curl -X POST -H "Content-Type: application/json" -d "{ \"username\": \"Chris\", \"password\": \"password\" }" http://localhost:8080/login
 SignUp Server
 curl -X POST -H "Content-Type: application/json" -d "{ \"username\": \"Chris\", \"password\": \"password\" }" http://localhost:8080/signUp
+
+curl -X POST -H "Content-Type: application/json" -d "{ \"username\": \"Chris\", \"password\": \"password\" }" http://testapp-larslarslars.rhcloud.com/login
+
 
 curl -X POST -H “content-type:application/json” -H “x-access-token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMzNDg4OTcxNDl9.2b_ObbbWTQkO0nFBHKNyE-i72Gwi3gh-BnXKZlLcodw” -H “x-key:Chris”  http://localhost:8080/api/v1/WHATEVER
