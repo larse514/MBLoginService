@@ -1,7 +1,16 @@
 // grab the things we need
 //TODO-Refactor into a repository class since mUser doesn't make sense
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/User_unit_test');
+//set default db values
+var db_name = 'User_unit_test';
+mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + db_name;
+//this is openshifts way of accessing environemtn variables
+//This will probably have to be set ya dingus
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+}
+
+mongoose.connect(mongodb_connection_string);
 var Schema = mongoose.Schema;
 
 // create a schema

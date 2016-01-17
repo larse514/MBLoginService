@@ -50,11 +50,20 @@ var ok = function(res) {
 	});
 }
 
+var iamateapot = function(res){
+	res.status(constants.IAMATEAPOT.code);
+	res.json({
+		"status": constants.IAMATEAPOT.code,
+		"message": constants.IAMATEAPOT.message
+	});
+}
+
 module.exports = {
 	badRequest : badRequest,
 	unauthorized : unauthorized,
 	expiredToken : expiredToken,
 	invalidUser: invalidUser,
 	internalServerError: internalServerError,
-	ok:ok
+	ok:ok,
+	iamateapot:iamateapot
 }

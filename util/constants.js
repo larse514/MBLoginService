@@ -25,8 +25,12 @@ module.exports = {
 		message : "Internal Server Error"
 	},
 	OK : {
-		code : 200,
-		message : "Ok"
+		code: 200,
+		message: "Ok"
+	},
+	IAMATEAPOT:{
+		code:418,
+		message: "I am a teapot"
 	}
 
 }

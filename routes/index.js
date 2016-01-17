@@ -10,11 +10,12 @@ var user = require('../service/users.js');
  */
 router.post('/login', auth.login);
 router.post('/signUp', user.create);
+router.get('/helloworld', function(req, res){require('../util/responseObjectHelper.js').iamateapot(res)});
 
 /*
  * Routes that can be hit by authenticated users
  */
-router.post('/api/v1/helloworld', function(req, res){console.log('hw')});
+router.post('/api/v1/helloworld', function(req, res){res.json('HelloWorld')});
 
  /*
  * Routes that can be hit by authenticated and 
