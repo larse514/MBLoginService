@@ -18,11 +18,11 @@ test.assert(user.data.password === apass)
 //okay our object is good, now let's try and save it
 user.save(function(){
 	//after saving try and grab it
-	new User().findByUserName(userName, function(err, user){
-		if(user!== null){
-			aggregation++
-		} else {
-			console.log("failed findByUserName");
+	new User().findByUserName(userName, function(user){
+		if(user.length==1) {
+			if (user[0].userName != null && user[0].password !== null && user[0].createdTime !== null) {
+				aggregation++
+			}
 		}
 		console.log(aggregation + " passed out of " + totalTests);
 		//keep track of this and cleanup at the end

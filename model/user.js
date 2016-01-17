@@ -46,9 +46,11 @@ User.prototype.findByUserName = function(name, next){
 };
 User.prototype.save = function (next){
 	var newUser = new mUser(this.data);
+	//set created timestamp
+	newUser.createdTime = new Date();
 	newUser.save(function(err) {
 		if (err) throw err;
-		next();
+		next(newUser);
 	});
 };
 User.prototype.update = function(next){
@@ -79,7 +81,16 @@ User.prototype.sanitize = function (data){
 	return _.pick(_.defaults(data, schema), _.keys(schema));
 };
 User.prototype.isValid = function(){
-	return _.filter(this.data, function(n){return !_.isNull(n)}).length > 0 ? true : false
+	//The Fancy way
+//	 _.filter(this.data, function(n){return !_.isNull(n)}).length > 0 ? true : false
+	//hand rolled way
+	if(this.data){
+		//lets just check name and password for now
+		if(this.data.userName && this.data.password){
+			return true;
+		}
+	}
+	return false;
 };
 
 

@@ -3,13 +3,13 @@ var User = require('../model/user.js');
 var Helper = require('../util/responseObjectHelper.js');
 
 var users = {
-	getAll: function(req, res, next){
+	getAll: function(req, res){
 		new User().findAll(function(user){
 			res.json(user);
-			next()
+			//next()
 		})
 	},
-	getByName: function(req, res, next){
+	getByName: function(req, res){
 		var user = new User(req.body);
 		//since this is a get by name need to make sure userName is set correctly
 		if(user.get('userName') == null){
@@ -18,20 +18,25 @@ var users = {
 		}
 		user.findByUserName(user.get('userName'), function(user){
 			res.json(user);
-			next()
 		})
 	},
-	create: function(req, res, next){
+	create: function(req, res){
+		console.log("create request received with the userName " + req.body.userName);
 		var user = new User(req.body);
 		//need to make sure 
 		if(!user.isValid()){
+			console.log("invalid user parameters");
 			Helper.badRequest(res);
 			return;
 		}
 		//if the user is valid then save it
-		user.save(next);
+		user.save(function(user){
+			console.log("Successfully created user" + user.userName)
+			Helper.ok(res)
+			console.log(res.body)
+		});
 	},
-	update: function(req, res, next){
+	update: function(req, res){
 		var user = new User(req.body);
 		if(!user.isValid()){
 			Helper.badRequest(res)
@@ -39,7 +44,6 @@ var users = {
 		}
 		user.update(function(updateUser){
 			res.json(user)
-			next(updateUser)
 		});
 	}
 };

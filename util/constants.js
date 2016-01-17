@@ -23,5 +23,10 @@ module.exports = {
 	INTERNAL_SERVER_ERROR : {
 		code : 500,
 		message : "Internal Server Error"
+	},
+	OK : {
+		code : 200,
+		message : "Ok"
 	}
+
 }

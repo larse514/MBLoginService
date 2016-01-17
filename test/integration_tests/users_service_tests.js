@@ -37,11 +37,13 @@ var req = {};
 var res = {json : function(data){
 	res.test = JSON.stringify(data)
 }};
+/*
 //set body
 var rand =  Math.floor((Math.random() * 100000) + 1);
 var userName = "integration_test_" + rand
 var password = "anustart";
 req.body = {userName : userName, password:password}
+//TODO-refactor this to curl tests because this is dumb
 UserService.create(req, res, function(){
 	//since this is an integration test we can try and find the object we're saving 
 	UserService.getByName({body:{userName:userName}}, res, function(){
@@ -72,4 +74,6 @@ var res = {json : function(data){
 	res.test = JSON.stringify(data)
 }};
 //need to get an object
+*/
+console.log("obsolete tests, refactor to use curl");
 

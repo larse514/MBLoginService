@@ -42,10 +42,19 @@ var internalServerError = function(res){
 	});
 }
 
+var ok = function(res) {
+	res.status(constants.OK.code);
+	res.json({
+		"status": constants.OK.code,
+		"message": constants.OK.message
+	});
+}
+
 module.exports = {
 	badRequest : badRequest,
 	unauthorized : unauthorized,
 	expiredToken : expiredToken,
 	invalidUser: invalidUser,
-	internalServerError: internalServerError
+	internalServerError: internalServerError,
+	ok:ok
 }

@@ -36,24 +36,12 @@ app.use(function(req, res, next){
 	err.status = 404;
 	next(err);
 });
-/*
-app.get('/helloworld', function (req, res){
-	console.log('helloWorld');
-	res.statusCode = 200;
-	res.send('helloworld')
-});
 
-app.get('/login', function(req, res){
-	console.log('login');
-	//Get credentials from...i wanna say the headers
-	var credentials = auth(req);
-	//make sure we have credentials
-	if(credentials === undefined){
-		res.statusCode = 400
-		res.send('Bad Request')
-	}
-
-});
-*/
 //start the server
-app.listen(process.env.PORT || 8080);
+//app.listen(process.env.PORT || 8080);
+// Start the server
+app.set('port', process.env.PORT || 8080);
+
+var server = app.listen(app.get('port'), function() {
+	console.log('Express server listening on port ' + server.address().port);
+});

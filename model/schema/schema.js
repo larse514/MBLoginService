@@ -3,7 +3,8 @@ schemas = {
 	user: {
 		_id: null,
 		userName: null,
-		password: null
+		password: null,
+		createdTime: null
 	}
 }
 
