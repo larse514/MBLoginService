@@ -2,7 +2,7 @@
   "name": "mbloginservice",
   "version": "1.0.0",
   "description": "service layer for Motherbox",
-  "main": "main.js",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },
@@ -21,12 +21,13 @@
     "unit.js": "^2.0.0",
     "xmlhttprequest": "^1.8.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify": "^13.0.0"
+  },
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit 1\"",
-    "start":"node server.js"
+    "start": "node server.js"
   },
-  "main" : "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/larse514/MBLoginService.git"

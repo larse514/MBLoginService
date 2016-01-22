@@ -29,7 +29,7 @@ module.exports = {
 		message: "Ok"
 	},
 	IAMATEAPOT:{
-		code:418,
+		code:200,
 		message: "I am a teapot"
 	}
 
