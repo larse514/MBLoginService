@@ -16,8 +16,7 @@ router.get('/areAToaster', function(req, res){require('../util/responseObjectHel
  * Routes that can be hit by authenticated users
  */
 router.get('/helloworld', function(req, res){
-	var string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
-	res.json('HelloWorld: ' + string)
+	res.json('HelloWorld: ')
 });
  /*
  * Routes that can be hit by authenticated and 

@@ -21,7 +21,8 @@ var users = {
 		})
 	},
 	create: function(req, res){
-		console.log("create request received with the userName " + req.body.userName);
+		console.log("create request received with body: ")
+		console.log(req.body);
 		var user = new User(req.body);
 		//need to make sure 
 		if(!user.isValid()){

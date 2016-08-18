@@ -13,7 +13,7 @@ app.all('/*', function(req, res, next){
 	res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
 	//set custom headers
-	res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key')
+	res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
 	if(req.method == 'OPTIONS'){
 		res.status(200).end();
 	} else {
@@ -37,15 +37,7 @@ app.use(function(req, res, next){
 	next(err);
 });
 
-//start the server
-//app.listen(process.env.PORT || 8080);
-// Start the server
-/*app.set('port', process.env.PORT || 8080);
 
-var server = app.listen(app.get('port'), function() {
-	console.log('Express server listening on port ' + server.address().port);
-});
-*/
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 

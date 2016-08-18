@@ -60,6 +60,8 @@ var auth = {
 				//now check the password
 				//TODO-update this to handle hashing of password stuff
 				if(user.data.password == password) {
+					//remove password
+					user.set('password', null)
 					next(null, user);
 					return;
 				}

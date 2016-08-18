@@ -71,9 +71,11 @@ User.prototype.cleanUp = function(){
 User.prototype.sanitize = function (data){
 	//if data is invalid set to empty object so we don't pull 
 	//bad errors, seems smrt
+	console.log(data)
 	data = data || {};
 	//grab user schema
 	schema = schemas.user
+	console.log(schema)
 	//so let's see...
 	//these are using lodash functions (more info found here: https://lodash.com/)
 	//_.defaults will add any variables, from schema, that data doesn't contain
